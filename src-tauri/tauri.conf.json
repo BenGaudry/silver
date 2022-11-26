@@ -61,6 +61,7 @@
         "resizable": false,
         "title": "Silver",
         "label": "main",
+        "url": "project-manager.html",
         "width": 800,
         "visible": false
       },

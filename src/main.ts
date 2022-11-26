@@ -1,11 +1,4 @@
-import { invoke } from "@tauri-apps/api/tauri";
-
-document.addEventListener('DOMContentLoaded', () => {
-  window.setTimeout(() => {
-    invoke('close_splashscreen')
-  }, 1000)
-  
-})
+// import { invoke } from "@tauri-apps/api/tauri";
 
 // let greetInputEl: HTMLInputElement | null;
 // let greetMsgEl: HTMLElement | null;
