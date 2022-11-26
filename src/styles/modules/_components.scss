@@ -1,0 +1,125 @@
+#choose-project-type {
+  border-right: $border;
+  padding: var(--default-padding);
+  height: 100vh;
+  @include default-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 56px;
+}
+
+.input-zone {
+  @include default-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+#project-core {
+  padding: 20px;
+  height: 100vh;
+  width: 100%;
+
+  form {
+    @include default-flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+.input-zone {
+  width: 100%;
+  @include default-flex;
+  flex-direction: column !important;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+
+  input[type=text] {
+    width: 100%;
+    background-color: var(--header-background);
+    border: 0;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+    outline: none;
+    padding: var(--default-padding);
+  }
+
+  input[type=checkbox] {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-color: var(--header-background) !important;
+  }
+}
+
+.project-types {
+  @include default-flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: max-content;
+  gap: 8px;
+
+  button {
+    width: 100%;
+    padding: 2px 0;
+    gap: 7px;
+    justify-content: flex-start;
+
+    img {
+      width: 20px;
+    }
+  }
+}
+
+.btn-nostyle {
+  @include default-flex;
+  width: 100%;
+  padding: 0;
+  background-color: transparent !important;
+  text-align: left;
+  border: 0;
+  border-radius: 0;
+}
+
+.desc {
+  text-align: left;
+  color: var(--sec-text-color);
+  font-weight: 600;
+}
+
+.cta {
+  @include cta;
+}
+
+.cta-secondary {
+  @include cta-secondary
+}
+
+.fixed-footer {
+  @include default-flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-top: $border;
+  background-color: var(--section-background);
+  justify-content: flex-end;
+  padding: calc(var(--default-padding) / 2) var(--default-padding);
+}
+
+.btn-full-width {
+  width: 100%;
+}
+
+.vertical-btn-container {
+  @include default-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--default-padding);
+  width: 100%;
+}

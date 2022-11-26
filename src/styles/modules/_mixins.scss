@@ -1,0 +1,36 @@
+@mixin default-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@mixin cta {
+  @include default-flex();
+  justify-content: center;
+  background-color: #335e9f;
+  box-shadow: inset 1px 1px 4px rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  padding: calc(var(--default-padding) / 2) calc(var(--default-padding) * 1.7);
+  font-weight: 600;
+
+  &:not(:last-child) {
+    margin-right: var(--default-padding);
+  }
+
+  &:hover {
+    background-color: #4d82d2;
+  }
+}
+
+@mixin cta-secondary {
+  @include cta;
+  background-color: var(--header-background);
+  border: $border;
+  transition: background-color 0.2s;
+  gap: var(--default-padding);
+  box-shadow: none;
+
+  &:hover {
+    background: var(--sec-btn-background);
+  }
+}

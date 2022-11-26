@@ -1,0 +1,7 @@
+@import "mixins";
+
+.choose-project-page {
+  user-select: none;
+  @include default-flex;
+  background-color: var(--section-background);
+}

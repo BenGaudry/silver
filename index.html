@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/app.scss" />
+    <title>Silver</title>
+  </head>
+  <body class="choose-project-page">
+    <nav id="choose-project-type">
+      <ul class="project-types">
+        <p class="desc">New project</p>
+        <button class="btn-nostyle" id="empty-proj-btn">
+          <img src="./src/assets/file-types-icons/empty.png" />
+          <span>Empty project</span>
+        </button>
+        <button class="btn-nostyle" id="html-proj-btn">
+          <img src="./src/assets/file-types-icons/html-5.png" />
+          <span>HTML5 project</span>
+        </button>
+        <button class="btn-nostyle" id="javascript-proj-btn">
+          <img src="./src/assets/file-types-icons/javascript.png" />
+          <span>Javascript project</span>
+        </button>
+        <button class="btn-nostyle" id="react-proj-btn">
+          <img src="./src/assets/file-types-icons/react.svg" />
+          <span>React project</span>
+        </button>
+        <button class="btn-nostyle" id="vue-proj-btn">
+          <img src="./src/assets/file-types-icons/vue.png" />
+          <span>Vue project</span>
+        </button>
+      </ul>
+
+      <div class="vertical-btn-container">
+        <button class="btn-full-width">Open project</button>
+        <button class="btn-full-width">Clone repository</button>
+      </div>
+    </nav>
+
+    <main id="project-core">
+      <form action="" method="post">
+        <div class="input-zone">
+          <label for="project-name">Project name</label>
+          <input type="text" id="project-name">
+        </div>
+        <div class="input-zone">
+          <label for="project-command">Default command</label>
+          <input type="text" id="project-command">
+        </div>
+        <div class="input-zone" id="typescript-input-zone">
+          <label for="project-typescript">TypeScript project</label>
+          <input type="checkbox" id="project-typescript">
+        </div>
+      </form>
+    </main>
+
+    <footer class="fixed-footer">
+      <button class="cta-secondary">Cancel</button>
+      <button class="cta">Create</button>
+    </footer>
+
+    <script src="./src/scripts/projects/projectListeners.ts" type="module"></script>
+  </body>
+</html>
