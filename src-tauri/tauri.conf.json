@@ -60,6 +60,7 @@
         "height": 600,
         "resizable": false,
         "title": "Silver",
+        "label": "main",
         "width": 800,
         "visible": false
       },
