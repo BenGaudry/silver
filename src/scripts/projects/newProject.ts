@@ -1,4 +1,7 @@
+import { call_vite } from "../../main";
 import { projetCore } from "./projectListeners";
+
+const createProjectBtn = document.getElementById("create-project-btn") as HTMLButtonElement
 
 export enum projectType {
   empty,
@@ -46,4 +49,10 @@ export function newProject(type: projectType, options?: projectOptions) {
       toClone = "";
       break;
   }
+  
+  return toClone;
 }
+
+createProjectBtn.addEventListener('mouseup', () => {
+  call_vite("node -v")
+})

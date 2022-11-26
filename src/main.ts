@@ -1,4 +1,15 @@
-// import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/tauri";
+
+window.addEventListener("DOMContentLoaded", () => {
+  call_vite("vite --help");
+});
+
+export async function call_vite(message: string) {
+  const inv = await invoke("call_vite", {
+    toexecute: message,
+  });
+  console.log(inv);
+}
 
 // let greetInputEl: HTMLInputElement | null;
 // let greetMsgEl: HTMLElement | null;

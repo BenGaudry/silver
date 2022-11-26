@@ -6,17 +6,28 @@
 use tauri::Manager;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-// #[tauri::command]
-// async fn close_splashscreen(window: tauri::Window) {
-//     let splashscreen_window = window.get_window("splashscreen").unwrap();
-//     let main_window = window.get_window("main").unwrap();
+#[tauri::command]
+fn call_vite(toexecute: &str) {
+    println!("{}", toexecute);
+    use std::process::Command;
 
-//     splashscreen_window.close().unwrap();
-//     main_window.show().unwrap();
-// }
+    let mut list_dir = Command::new(toexecute);
+
+    // Execute `ls` in the current directory of the program.
+    list_dir.status().expect("process failed to execute");
+
+    println!();
+
+    // Change `ls` to execute in the root directory.
+    list_dir.current_dir("/");
+
+    // And then execute `ls` again but in the root directory.
+    list_dir.status().expect("process failed to execute");
+}
 
 fn main() {
     tauri::Builder::default()
+        .invoke_handler(tauri::generate_handler![call_vite])
         .setup(|app| {
             let splashscreen_window = app.get_window("splashscreen").unwrap();
             let main_window = app.get_window("main").unwrap();
@@ -24,7 +35,7 @@ fn main() {
             tauri::async_runtime::spawn(async move {
                 // initialize your app here instead of sleeping :)
                 println!("Initializing...");
-                std::thread::sleep(std::time::Duration::from_secs(2));
+                std::thread::sleep(std::time::Duration::from_secs(5));
                 println!("Done initializing.");
 
                 // After it's done, close the splashscreen and display the main window
