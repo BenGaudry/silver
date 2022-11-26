@@ -1,5 +1,5 @@
-import { call_vite } from "../../main";
 import { projetCore } from "./projectListeners";
+import { WebviewWindow, getCurrent } from '@tauri-apps/api/window';
 
 const createProjectBtn = document.getElementById("create-project-btn") as HTMLButtonElement
 
@@ -53,6 +53,18 @@ export function newProject(type: projectType, options?: projectOptions) {
   return toClone;
 }
 
-createProjectBtn.addEventListener('mouseup', () => {
-  call_vite("node -v")
+createProjectBtn.addEventListener('mouseup', async () => {
+  const curWin = getCurrent()
+  curWin.hide()
+  const webview = new WebviewWindow('editor', {
+    url: '../../../editor.html',
+    resizable: true,
+    visible: true,
+    center: true,
+    maximized: true
+  })
+
+  webview.onCloseRequested(() => {
+    curWin.close()
+  })
 })
