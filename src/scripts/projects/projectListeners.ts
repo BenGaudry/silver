@@ -23,6 +23,8 @@ const vueProjBtn = document.getElementById(
 
 export const pathBtn = document.getElementById("path-btn") as HTMLButtonElement;
 
+var projectPath:any;
+
 emptyProjBtn?.addEventListener("click", () => {
   newProject(projectTypes.empty, {
     allowTypescript: false,
@@ -52,15 +54,17 @@ reactProjBtnt?.addEventListener("click", () => {
 });
 
 vueProjBtn?.addEventListener("click", () => {
-  tauriConsole.log("Firing event")
-  newProject(projectTypes.vue, { allowTypescript: true, showCommandLine: true });
+  tauriConsole.log("Firing event");
+  newProject(projectTypes.vue, {
+    allowTypescript: true,
+    showCommandLine: true,
+  });
 });
 
 pathBtn.addEventListener("mouseup", async (e) => {
-  e.preventDefault()
-  tauriConsole.log("Firing event")
-  openDirectory();
-})
+  e.preventDefault();
+  projectPath = await openDirectory();
+});
 
 window.onload = () => {
   projetCore.style.display = "none";
