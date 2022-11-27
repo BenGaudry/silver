@@ -7,7 +7,8 @@ const createProjectBtn = document.getElementById(
   "create-project-btn"
 ) as HTMLButtonElement;
 
-export enum projectType {
+export enum projectTypes {
+  none,
   empty,
   html,
   javascript,
@@ -15,12 +16,14 @@ export enum projectType {
   vue,
 }
 
+var selectedProjectType: projectTypes = projectTypes.none;
+
 export interface projectOptions {
   allowTypescript?: boolean;
   showCommandLine?: boolean;
 }
 
-export function newProject(type: projectType, options?: projectOptions) {
+export function newProject(type: projectTypes, options?: projectOptions) {
   projetCore.style.display = "block";
   var toClone = "";
 
@@ -35,24 +38,29 @@ export function newProject(type: projectType, options?: projectOptions) {
   showInput(options?.showCommandLine, defaultCommandInputZone);
 
   switch (type) {
-    case projectType.empty:
+    case projectTypes.empty:
       toClone = "";
+      selectedProjectType = projectTypes.empty;
       break;
 
-    case projectType.html:
+    case projectTypes.html:
       toClone = "";
+      selectedProjectType = projectTypes.html;
       break;
 
-    case projectType.javascript:
+    case projectTypes.javascript:
       toClone = "";
+      selectedProjectType = projectTypes.javascript;
       break;
 
-    case projectType.react:
+    case projectTypes.react:
       toClone = "";
+      selectedProjectType = projectTypes.react;
       break;
 
-    case projectType.vue:
+    case projectTypes.vue:
       toClone = "";
+      selectedProjectType = projectTypes.vue;
       break;
   }
 
@@ -68,8 +76,14 @@ function showInput(yes: boolean | undefined, element: HTMLElement): boolean {
   return yes !== undefined && yes;
 }
 
+function checkInputs(): boolean {
+  return true;
+}
+
 createProjectBtn.addEventListener("mouseup", async () => {
-  tauriConsole.log("opening editor");
-  const editor = new Editor({ projectManagerWindow: getCurrent() });
-  editor.init()
+  if (checkInputs()) {
+    tauriConsole.log("opening editor");
+    const editor = new Editor({ projectManagerWindow: getCurrent() });
+    editor.init();
+  }
 });

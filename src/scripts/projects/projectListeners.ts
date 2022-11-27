@@ -1,5 +1,5 @@
 import { tauriConsole } from "../interface/console";
-import { newProject, projectType } from "./newProject";
+import { newProject, projectTypes } from "./newProject";
 import { openDirectory } from "./openFolder";
 
 export const projetCore = document.getElementById(
@@ -24,28 +24,28 @@ const vueProjBtn = document.getElementById(
 export const pathBtn = document.getElementById("path-btn") as HTMLButtonElement;
 
 emptyProjBtn?.addEventListener("click", () => {
-  newProject(projectType.empty, {
+  newProject(projectTypes.empty, {
     allowTypescript: false,
     showCommandLine: false,
   });
 });
 
 htmlProjBtn?.addEventListener("click", () => {
-  newProject(projectType.html, {
+  newProject(projectTypes.html, {
     allowTypescript: false,
     showCommandLine: false,
   });
 });
 
 javascriptProjBtn?.addEventListener("click", () => {
-  newProject(projectType.javascript, {
+  newProject(projectTypes.javascript, {
     allowTypescript: true,
     showCommandLine: true,
   });
 });
 
 reactProjBtnt?.addEventListener("click", () => {
-  newProject(projectType.react, {
+  newProject(projectTypes.react, {
     allowTypescript: true,
     showCommandLine: true,
   });
@@ -53,7 +53,7 @@ reactProjBtnt?.addEventListener("click", () => {
 
 vueProjBtn?.addEventListener("click", () => {
   tauriConsole.log("Firing event")
-  newProject(projectType.vue, { allowTypescript: true, showCommandLine: true });
+  newProject(projectTypes.vue, { allowTypescript: true, showCommandLine: true });
 });
 
 pathBtn.addEventListener("mouseup", async (e) => {
