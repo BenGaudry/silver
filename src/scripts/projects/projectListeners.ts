@@ -1,6 +1,6 @@
 import { tauriConsole } from "../interface/console";
 import { newProject, projectTypes } from "./newProject";
-import { openDirectory } from "./openFolder";
+import { openDirectory } from "./openDirectory";
 
 export const projetCore = document.getElementById(
   "project-core"
@@ -22,8 +22,6 @@ const vueProjBtn = document.getElementById(
 ) as HTMLButtonElement | null;
 
 export const pathBtn = document.getElementById("path-btn") as HTMLButtonElement;
-
-var projectPath:any;
 
 emptyProjBtn?.addEventListener("click", () => {
   newProject(projectTypes.empty, {
@@ -63,7 +61,7 @@ vueProjBtn?.addEventListener("click", () => {
 
 pathBtn.addEventListener("mouseup", async (e) => {
   e.preventDefault();
-  projectPath = await openDirectory();
+  openDirectory();
 });
 
 window.onload = () => {

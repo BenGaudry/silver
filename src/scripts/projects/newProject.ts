@@ -2,6 +2,7 @@ import { projetCore } from "./projectListeners";
 import { getCurrent } from "@tauri-apps/api/window";
 import { tauriConsole } from "../interface/console";
 import { Editor } from "../editor/init/editorInit";
+import { getCurrentDirectory } from "./openDirectory";
 
 const createProjectBtn = document.getElementById(
   "create-project-btn"
@@ -77,13 +78,22 @@ function showInput(yes: boolean | undefined, element: HTMLElement): boolean {
 }
 
 function checkInputs(): boolean {
-  return true;
+  if (
+    getCurrentDirectory() !== null &&
+    getCurrentDirectory() !== undefined &&
+    getCurrentDirectory() !== ""
+  ) {
+    return true;
+  } else return false;
 }
 
 createProjectBtn.addEventListener("mouseup", async () => {
   if (checkInputs()) {
     tauriConsole.log("opening editor");
-    const editor = new Editor({ projectManagerWindow: getCurrent() });
+    const editor = new Editor({
+      projectManagerWindow: getCurrent(),
+      openedProjectPath: getCurrentDirectory(),
+    });
     editor.init();
-  }
+  } else tauriConsole.log("Input(s) was(ere) empty");
 });
