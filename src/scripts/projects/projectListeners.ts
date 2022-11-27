@@ -59,11 +59,7 @@ vueProjBtn?.addEventListener("click", () => {
   });
 });
 
-pathBtn.addEventListener("mouseup", async (e) => {
+pathBtn?.addEventListener("mouseup", async (e) => {
   e.preventDefault();
   openDirectory();
 });
-
-window.onload = () => {
-  projetCore.style.display = "none";
-};

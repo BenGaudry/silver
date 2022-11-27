@@ -87,13 +87,21 @@ function checkInputs(): boolean {
   } else return false;
 }
 
-createProjectBtn.addEventListener("mouseup", async () => {
-  if (checkInputs()) {
-    tauriConsole.log("opening editor");
-    const editor = new Editor({
-      projectManagerWindow: getCurrent(),
-      openedProjectPath: getCurrentDirectory(),
-    });
-    editor.init();
-  } else tauriConsole.log("Input(s) was(ere) empty");
-});
+var editor:any;
+if(createProjectBtn !== null) {
+  createProjectBtn.addEventListener("mouseup", async () => {
+    if (checkInputs()) {
+      tauriConsole.log("opening editor");
+      editor = new Editor({
+        projectManagerWindow: getCurrent(),
+        path: getCurrentDirectory(),
+      });
+      editor.create();
+    } else tauriConsole.log("Input(s) was(ere) empty");
+  });
+}
+
+export function getEditor() {
+  console.log(editor)
+  return editor;
+}

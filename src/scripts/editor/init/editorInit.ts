@@ -2,17 +2,19 @@ import { WebviewWindow } from "@tauri-apps/api/window";
 
 export interface EditorOptions {
   projectManagerWindow: any;
-  openedProjectPath?: string;
+  path: string;
 }
 
 export class Editor {
   public projectManagerWindow;
-  constructor(options:EditorOptions) {
-    this.projectManagerWindow = options.projectManagerWindow
-    this.projectManagerWindow.hide()
+  public path;
+  constructor(options: EditorOptions) {
+    this.projectManagerWindow = options.projectManagerWindow;
+    this.path = options.path;
+    this.projectManagerWindow.hide();
   }
 
-  init () {
+  create() {
     const webview = new WebviewWindow("editor", {
       url: "/src/templates/editor.html",
       resizable: true,
@@ -22,7 +24,14 @@ export class Editor {
     });
 
     webview.onCloseRequested(() => {
-      this.projectManagerWindow.close()
-    })
+      this.projectManagerWindow.close();
+    });
+  }
+
+  init(doc: Document) {
+    const lister = doc.getElementById(
+      "directories-list"
+    ) as HTMLPreElement;
+    lister.textContent = this.path;
   }
 }
