@@ -5,4 +5,3 @@ export class tauriConsole {
     await invoke("tauri_log", {message: message})
   }
 }
-git 

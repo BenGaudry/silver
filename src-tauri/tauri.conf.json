@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.tauri.dev",
+      "identifier": "com.silver.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -61,7 +61,7 @@
         "resizable": false,
         "title": "Silver",
         "label": "main",
-        "url": "project-manager.html",
+        "url": "index.html",
         "width": 800,
         "visible": false
       },
@@ -69,7 +69,7 @@
         "width": 600,
         "height": 300,
         "decorations": false,
-        "url": "splashscreen.html",
+        "url": "../src/templates/splashscreen.html",
         "label": "splashscreen",
         "resizable": false,
         "center": true

@@ -1,3 +1,4 @@
+import { tauriConsole } from "../interface/console";
 import { newProject, projectType } from "./newProject";
 import { openDirectory } from "./openFolder";
 
@@ -19,7 +20,8 @@ const reactProjBtnt = document.getElementById(
 const vueProjBtn = document.getElementById(
   "vue-proj-btn"
 ) as HTMLButtonElement | null;
-const pathBtn = document.getElementById("path-btn") as HTMLButtonElement | null;
+
+export const pathBtn = document.getElementById("path-btn") as HTMLButtonElement;
 
 emptyProjBtn?.addEventListener("click", () => {
   newProject(projectType.empty, {
@@ -50,10 +52,13 @@ reactProjBtnt?.addEventListener("click", () => {
 });
 
 vueProjBtn?.addEventListener("click", () => {
+  tauriConsole.log("Firing event")
   newProject(projectType.vue, { allowTypescript: true, showCommandLine: true });
 });
 
-pathBtn?.addEventListener('mouseup', () => {
+pathBtn.addEventListener("mouseup", async (e) => {
+  e.preventDefault()
+  tauriConsole.log("Firing event")
   openDirectory();
 })
 

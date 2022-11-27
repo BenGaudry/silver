@@ -1,5 +1,7 @@
 import { projetCore } from "./projectListeners";
-import { WebviewWindow, getCurrent } from "@tauri-apps/api/window";
+import { getCurrent } from "@tauri-apps/api/window";
+import { tauriConsole } from "../interface/console";
+import { Editor } from "../editor/init/editorInit";
 
 const createProjectBtn = document.getElementById(
   "create-project-btn"
@@ -67,17 +69,7 @@ function showInput(yes: boolean | undefined, element: HTMLElement): boolean {
 }
 
 createProjectBtn.addEventListener("mouseup", async () => {
-  const curWin = getCurrent();
-  curWin.hide();
-  const webview = new WebviewWindow("editor", {
-    url: "../../../editor.html",
-    resizable: true,
-    visible: true,
-    center: true,
-    maximized: true,
-  });
-
-  webview.onCloseRequested(() => {
-    curWin.close();
-  });
+  tauriConsole.log("opening editor");
+  const editor = new Editor({ projectManagerWindow: getCurrent() });
+  editor.init()
 });
