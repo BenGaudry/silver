@@ -16,9 +16,14 @@ fn call_vite(toexecute: &str) {
     first_command.arg("-version");
 }
 
+#[tauri::command]
+fn tauri_log(message: &str) {
+    println!("{}", message);
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![call_vite])
+        .invoke_handler(tauri::generate_handler![call_vite, tauri_log])
         .setup(|app| {
             let splashscreen_window = app.get_window("splashscreen").unwrap();
             let main_window = app.get_window("main").unwrap();

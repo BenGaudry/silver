@@ -1,7 +1,9 @@
 import { projetCore } from "./projectListeners";
-import { WebviewWindow, getCurrent } from '@tauri-apps/api/window';
+import { WebviewWindow, getCurrent } from "@tauri-apps/api/window";
 
-const createProjectBtn = document.getElementById("create-project-btn") as HTMLButtonElement
+const createProjectBtn = document.getElementById(
+  "create-project-btn"
+) as HTMLButtonElement;
 
 export enum projectType {
   empty,
@@ -13,6 +15,7 @@ export enum projectType {
 
 export interface projectOptions {
   allowTypescript?: boolean;
+  showCommandLine?: boolean;
 }
 
 export function newProject(type: projectType, options?: projectOptions) {
@@ -22,11 +25,12 @@ export function newProject(type: projectType, options?: projectOptions) {
   const typescriptInputZone = document.getElementById(
     "typescript-input-zone"
   ) as HTMLDivElement;
-  if (options !== undefined && options.allowTypescript === false) {
-    typescriptInputZone.style.display = "none";
-  } else if (options !== undefined && options.allowTypescript) {
-    typescriptInputZone.style.display = "block";
-  }
+  const defaultCommandInputZone = document.getElementById(
+    "default-command-input-zone"
+  ) as HTMLDivElement;
+
+  showInput(options?.allowTypescript, typescriptInputZone);
+  showInput(options?.showCommandLine, defaultCommandInputZone);
 
   switch (type) {
     case projectType.empty:
@@ -49,22 +53,31 @@ export function newProject(type: projectType, options?: projectOptions) {
       toClone = "";
       break;
   }
-  
+
   return toClone;
 }
 
-createProjectBtn.addEventListener('mouseup', async () => {
-  const curWin = getCurrent()
-  curWin.hide()
-  const webview = new WebviewWindow('editor', {
-    url: '../../../editor.html',
+function showInput(yes: boolean | undefined, element: HTMLElement): boolean {
+  if (yes !== undefined && yes) {
+    element.style.display = "block";
+  } else if (yes !== undefined && !yes) {
+    element.style.display = "none";
+  }
+  return yes !== undefined && yes;
+}
+
+createProjectBtn.addEventListener("mouseup", async () => {
+  const curWin = getCurrent();
+  curWin.hide();
+  const webview = new WebviewWindow("editor", {
+    url: "../../../editor.html",
     resizable: true,
     visible: true,
     center: true,
-    maximized: true
-  })
+    maximized: true,
+  });
 
   webview.onCloseRequested(() => {
-    curWin.close()
-  })
-})
+    curWin.close();
+  });
+});

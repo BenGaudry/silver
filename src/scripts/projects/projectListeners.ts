@@ -1,4 +1,5 @@
 import { newProject, projectType } from "./newProject";
+import { openDirectory } from "./openFolder";
 
 export const projetCore = document.getElementById(
   "project-core"
@@ -18,27 +19,44 @@ const reactProjBtnt = document.getElementById(
 const vueProjBtn = document.getElementById(
   "vue-proj-btn"
 ) as HTMLButtonElement | null;
+const pathBtn = document.getElementById("path-btn") as HTMLButtonElement | null;
 
 emptyProjBtn?.addEventListener("click", () => {
-  newProject(projectType.empty, { allowTypescript: false });
+  newProject(projectType.empty, {
+    allowTypescript: false,
+    showCommandLine: false,
+  });
 });
 
 htmlProjBtn?.addEventListener("click", () => {
-  newProject(projectType.html, { allowTypescript: false });
+  newProject(projectType.html, {
+    allowTypescript: false,
+    showCommandLine: false,
+  });
 });
 
 javascriptProjBtn?.addEventListener("click", () => {
-  newProject(projectType.javascript, { allowTypescript: true });
+  newProject(projectType.javascript, {
+    allowTypescript: true,
+    showCommandLine: true,
+  });
 });
 
 reactProjBtnt?.addEventListener("click", () => {
-  newProject(projectType.react, { allowTypescript: true });
+  newProject(projectType.react, {
+    allowTypescript: true,
+    showCommandLine: true,
+  });
 });
 
 vueProjBtn?.addEventListener("click", () => {
-  newProject(projectType.vue, { allowTypescript: true });
+  newProject(projectType.vue, { allowTypescript: true, showCommandLine: true });
 });
+
+pathBtn?.addEventListener('mouseup', () => {
+  openDirectory();
+})
 
 window.onload = () => {
   projetCore.style.display = "none";
-}
+};
