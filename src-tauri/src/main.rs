@@ -10,9 +10,9 @@ use tauri::Manager;
 fn call_vite(toexecute: &str) {
     println!("{}", toexecute);
     use std::process::Command;
-    
+
     let mut first_command = Command::new(toexecute);
-    
+
     first_command.arg("-version");
 }
 
@@ -20,7 +20,6 @@ fn call_vite(toexecute: &str) {
 fn tauri_log(message: &str) {
     println!("{}", message);
 }
-
 
 fn main() {
     tauri::Builder::default()
@@ -32,7 +31,7 @@ fn main() {
             tauri::async_runtime::spawn(async move {
                 // initialize your app here instead of sleeping :)
                 println!("Initializing...");
-                std::thread::sleep(std::time::Duration::from_secs(5));
+                std::thread::sleep(std::time::Duration::from_secs(1));
                 println!("Done initializing.");
 
                 // After it's done, close the splashscreen and display the main window

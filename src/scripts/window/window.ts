@@ -1,4 +1,5 @@
 import { appWindow } from "@tauri-apps/api/window";
+import { tauriConsole } from "../interface/console";
 
 export enum windowLocation {
   projectManager,
@@ -8,6 +9,7 @@ export enum windowLocation {
 
 export interface windowOptions {
   fullscreen?: boolean;
+  projectPath?: string;
 }
 
 export class Window {
@@ -33,10 +35,19 @@ export class Window {
       default:
         return false;
     }
-    window.location.assign("/src/templates/editor.html");
+    window.location.assign(url);
     if (this.options?.fullscreen) {
-      await appWindow.maximize();
+      appWindow.maximize();
     }
+    const body = document.querySelector("body") as HTMLBodyElement
+    if (this.options?.projectPath !== undefined) {
+      tauriConsole.log("Path:")
+      tauriConsole.log(this.options.projectPath)
+    } else {
+      tauriConsole.log("No path specified")
+    }
+    
+    body.innerHTML += this.options?.projectPath;
     return true;
   }
 }

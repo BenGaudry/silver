@@ -1,13 +1,23 @@
+import { tauriConsole } from "../../interface/console";
 import { Window, windowLocation } from "../../window/window";
 import { editorMenu } from "./editorMenu";
 
 export interface EditorOptions {
-  projectManagerWindow: any;
-  path: string;
+  projectPath?: string;
 }
 
-export async function openEditor() {
-  let editorWin = new Window(windowLocation.editor, { fullscreen: true });
+export function openEditor(options?: EditorOptions) {
+  let path = "";
+  if (options?.projectPath !== undefined) {
+    path = options.projectPath;
+  } else {
+    path = "No path"
+  }
+  tauriConsole.log(path)
+  let editorWin = new Window(windowLocation.editor, {
+    fullscreen: true,
+    projectPath: path,
+  });
   editorWin.init();
   renderMenu();
 }
