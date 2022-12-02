@@ -1,6 +1,5 @@
 import { open } from "@tauri-apps/api/dialog";
 import { appDataDir } from "@tauri-apps/api/path";
-import { tauriConsole } from "../interface/console";
 
 var currentDirectory:any;
 
@@ -18,8 +17,6 @@ export async function openDirectory() {
     directory: true,
     defaultPath: await appDataDir(),
   });
-  currentDirectory = dir
-  console.log(dir)
-  tauriConsole.log(dir)
+  setCurrentDirectory(dir);
   return dir;
 }

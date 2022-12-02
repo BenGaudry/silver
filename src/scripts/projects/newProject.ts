@@ -86,15 +86,8 @@ function checkInputs(): boolean {
   } else return false;
 }
 
-var editor:any;
-createProjectBtn.addEventListener("mouseup", async () => {
+createProjectBtn?.addEventListener("mouseup", async () => {
   if (checkInputs()) {
     openEditor()
   } else tauriConsole.log("Input(s) was(ere) empty");
 });
-
-
-export function getEditor() {
-  console.log(editor)
-  return editor;
-}
