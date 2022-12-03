@@ -13,6 +13,7 @@ export function openEditor(options?: EditorOptions) {
   } else {
     path = "No path"
   }
+  tauriConsole.log("editorInit.ts: line 16")
   tauriConsole.log(path)
   let editorWin = new Window(windowLocation.editor, {
     fullscreen: true,
